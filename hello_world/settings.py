@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django_browser_reload",
+    "alemdasala"
 ]
 
 MIDDLEWARE = [
@@ -140,3 +140,6 @@ MEDIA_ROOT = BASE_DIR / "hello_world" / "media"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+LOGIN_REDIRECT_URL = 'home' # Nome da URL para redirecionar após o login
+LOGOUT_REDIRECT_URL = 'login' # Nome da URL para redirecionar após o logout

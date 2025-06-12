@@ -1,0 +1,167 @@
+/* Estilos Globais e Reset Básico */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* Um cinza claro para o fundo */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Cabeçalho Principal */
+.main-header {
+    background-color: #ffffff; /* Fundo branco como na imagem */
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
+    margin-bottom: 30px;
+}
+
+.main-header h1 {
+    margin: 0;
+    color: #4A4A4A; /* Cor de texto que se aproxima do título da imagem */
+    font-size: 2.5em;
+}
+
+/* Layout dos Cards (Grid) */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colunas responsivas */
+    gap: 25px; /* Espaço entre os cards */
+    max-width: 1200px; /* Largura máxima do conteúdo */
+    margin: 0 auto 50px auto; /* Centraliza e adiciona margem inferior */
+    padding: 0 20px; /* Padding nas laterais */
+}
+
+/* Estilo Básico do Card */
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Sombra mais pronunciada para cards */
+    transition: transform 0.2s ease-in-out; /* Efeito hover suave */
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Eleva o card no hover */
+}
+
+.card h2 {
+    color: #333;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #555;
+    font-size: 0.95em;
+}
+
+/* Estilo Específico do Card de Login (amarelo) */
+.login-card {
+    background-color: #F8E3AD; /* Cor amarelada similar ao "Fale com alguém" */
+    grid-column: span 1; /* Garante que ocupe uma coluna normal */
+    /* Poderíamos usar grid-column: 1 / -1; para ocupar a largura total em telas pequenas,
+       mas com 'auto-fit' e 'minmax', ele se ajustará sozinho. */
+    padding: 30px; /* Um pouco mais de padding para o formulário */
+}
+
+.login-card h2 {
+    color: #6C5500; /* Um tom de marrom escuro para o título do login */
+    margin-bottom: 25px;
+}
+
+/* Estilos do Formulário de Login */
+.form-group {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #6C5500; /* Cor para os labels */
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"] {
+    width: calc(100% - 22px); /* 100% menos o padding */
+    padding: 11px;
+    border: 1px solid #c0a060; /* Borda levemente dourada/marrom */
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="password"]:focus {
+    outline: none;
+    border-color: #e0b86b; /* Borda mais clara ao focar */
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2); /* Sombra de foco amarela */
+}
+
+/* Botão de Login */
+.btn-primary {
+    background-color: #FFC107; /* Amarelo primário para o botão */
+    color: #333; /* Texto escuro no botão amarelo */
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 15px;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e0a800; /* Amarelo um pouco mais escuro no hover */
+}
+
+/* Link de Registro */
+.register-link {
+    margin-top: 25px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.register-link a {
+    color: #007bff; /* Azul padrão para links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Rodapé */
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    background-color: #ffffff;
+    box-shadow: 0 -2px 4px rgba(0,0,0,0.05);
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* Responsividade Básica (para telas menores) */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2em;
+    }
+    .content-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+        padding: 0 15px;
+    }
+    .card {
+        padding: 20px;
+    }
+    .login-card {
+        padding: 25px;
+    }
+}

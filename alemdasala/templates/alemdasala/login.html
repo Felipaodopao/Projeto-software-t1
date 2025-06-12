@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Seu Bem-Estar</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/login.css' %}">
+</head>
+<body>
+    <header class="main-header">
+        <h1>Bem-Estar Digital</h1>
+    </header>
+
+    <main class="content-grid">
+        <div class="card">
+            <h2>Como você está se sentindo hoje?</h2>
+            <p>Registre seu humor hoje e veja o retrospecto</p>
+        </div>
+
+        <div class="card">
+            <h2>Respiração guiada</h2>
+            <p>Faça uma pausa e respire um pouco para aliviar o estresse</p>
+        </div>
+
+        <div class="card">
+            <h2>Meditação rápida</h2>
+            <p>Medite com sons da nossa biblioteca extensa</p>
+        </div>
+
+        <div class="card">
+            <h2>Organize seu tempo</h2>
+            <p>Não fique sobrecarregado por tarefas</p>
+        </div>
+
+        <div class="card login-card"> {# Adicionamos uma classe específica para estilizar o card de login #}
+            <h2>Entrar</h2>
+            <form method="post">
+                {% csrf_token %} {# MUITO IMPORTANTE para segurança no Django #}
+                <div class="form-group">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" name="username" placeholder="Seu nome de usuário" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" placeholder="Sua senha" required>
+                </div>
+                <button type="submit" class="btn-primary">Login</button>
+            </form>
+            <p class="register-link">Não tem uma conta? <a href="{% url 'registro' %}">Registre-se aqui</a></p>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 Seu Projeto de Bem-Estar. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
