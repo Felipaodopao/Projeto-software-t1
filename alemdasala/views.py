@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm # Formulário padrão de login do Django
-from django.contrib.auth import login, logout, authenticate # Funções de autenticação
-from django.contrib import messages # Para exibir mensagens de sucesso/erro
+from django.contrib.auth.forms import AuthenticationForm 
+from django.contrib.auth import login, logout, authenticate 
+from django.contrib import messages 
 
 # View para a página de login
 def login_view(request):
@@ -25,13 +25,11 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'alemdasala/login.html', {'form': form})
 
-# View para logout
+
 def logout_view(request):
     logout(request)
     messages.info(request, "Você foi desconectado(a).")
     return redirect('login') # Redireciona para a página de login após o logout
 
-# Exemplo de uma view para a página inicial/dashboard
 def home_view(request):
-    # Esta view pode ser protegida com @login_required no futuro
-    return render(request, 'alemdasala/home.html') # Crie este template se não existir
+     return render(request, 'alemdasala/home.html') 
