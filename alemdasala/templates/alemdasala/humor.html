@@ -1,0 +1,30 @@
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Como você está se sentindo?</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/humor.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Como você está se sentindo hoje?</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="humor">Selecione seu humor:</label>
+            <select id="humor" name="humor" required>
+                <option value="">-- Escolha --</option>
+                <option value="feliz">😊 Feliz</option>
+                <option value="triste">😢 Triste</option>
+                <option value="ansioso">😰 Ansioso</option>
+                <option value="calmo">😌 Calmo</option>
+                <option value="cansado">😴 Cansado</option>
+                <option value="irritado">😠 Irritado</option>
+            </select>
+
+            <label for="descricao">Quer desabafar?</label>
+            <textarea id="descricao" name="descricao" rows="4" placeholder="Escreva algo se quiser..."></textarea>
+
+            <button type="submit">Registrar humor</button>
+        </form>
+    </div>
+</body>
+</html>
