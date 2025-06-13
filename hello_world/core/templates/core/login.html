@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'core/logo.png' %}" alt="Logo" class="logo">
+    </div>
+    <div class="login-container">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="email">Email</label>
+            <input type="text" id="email" name="username" placeholder="Value">
+
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="password" placeholder="Value">
+
+            <button type="submit">Sign In</button>
+            <a href="#">Esqueceu a senha?</a>
+        </form>
+    </div>
+</body>
+</html>
