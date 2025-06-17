@@ -14,7 +14,9 @@
                 <div class="perfil-icon"></div>
             </a>
         {% else %}
-            <div class="perfil-icon"></div>
+            <div class="perfil-icon">
+               <img src="{% static 'core/profileIcon.png' %}" alt="Perfil">
+            </div>
         {% endif %}
     </div>
 
@@ -52,8 +54,10 @@
                 <p>Faça uma pausa e respire um pouco para aliviar o estresse</p>
             </a>
           {% else %}
-            <h2>Respiração guiada</h2>
-            <p>Faça uma pausa e respire um pouco para aliviar o estresse</p>
+            <a href="{% url 'respiracao' %}" style="text-decoration:none">
+              <h2>Respiração guiada</h2>
+              <p>Faça uma pausa e respire um pouco para aliviar o estresse</p>
+            </a>
           {% endif %}
       </div>
       <div class="card meditacao">

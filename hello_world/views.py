@@ -42,3 +42,7 @@ def register_view(request):
         return redirect('home')
 
     return render(request, 'core/register.html')
+
+@login_required
+def respiracao_view(request):
+    return render(request, 'core/respiracao.html')

@@ -19,15 +19,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+from .views import respiracao_view
 from hello_world import views as core_views
+from . import views
 
 urlpatterns = [
-    path("", core_views.index, name='home'), 
+    path("", core_views.home, name='home'), 
     path('admin/', admin.site.urls),
     path("__reload__/", include("django_browser_reload.urls")),
     path('register/', core_views.register_view, name='register'), 
     path('login/', core_views.login_view, name='login'),
+    path('respiracao/', respiracao_view, name='respiracao'),
+    #path('respiracao/', views.respiracao_guiada, name='respiracao'),
+
 ]
 
 if settings.DEBUG:
