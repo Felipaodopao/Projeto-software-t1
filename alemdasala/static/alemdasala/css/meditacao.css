@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px 30px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+header {
+    background-color: #D1C2E0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+header .logo {
+    width: 40px;
+    height: 40px;
+}
+
+header h1 {
+    font-size: 18px;
+    color: #2d1f3f;
+    margin: 0;
+}
+
+main h2 {
+    color: #2d1f3f;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+main p {
+    color: #333;
+    margin: 10px 0 20px 0;
+}
+
+.start-button {
+    background-color: #AEE1B3;
+    color: #2d1f3f;
+    border: none;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.option {
+    background-color: #ddd;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 14px;
+    color: #5c4b6c;
+    cursor: pointer;
+}
