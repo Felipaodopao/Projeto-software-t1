@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_browser_reload",
     "hello_world.core",
+    "alemdasala",
 ]
 
 MIDDLEWARE = [

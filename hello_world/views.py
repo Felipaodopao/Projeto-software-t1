@@ -4,7 +4,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import login
-
+from datetime import date
+from alemdasala.models import Humor
+from datetime import timedelta
 
 def index(request):
     context = {
@@ -46,3 +48,27 @@ def register_view(request):
 @login_required
 def respiracao_view(request):
     return render(request, 'core/respiracao.html')
+
+
+def historico_humor(request):
+    data_hoje = request.GET.get('data') or date.today().isoformat()
+    humor_dia = Humor.objects.filter(usuario=request.user, data=data_hoje).first()
+
+    # Calcula o início da semana (segunda-feira)
+    hoje = date.fromisoformat(data_hoje)
+    inicio_semana = hoje - timedelta(days=hoje.weekday())
+    dias_semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
+    dados_semana = {}
+
+    for i in range(7):
+        dia_data = inicio_semana + timedelta(days=i)
+        entrada = Humor.objects.filter(usuario=request.user, data=dia_data).first()
+        dados_semana[dias_semana[i]] = int(entrada.nivel) if entrada else 0
+
+    contexto = {
+        'data_hoje': data_hoje,
+        'data_formatada': humor_dia.data.strftime('%A, %d de %B') if humor_dia else '',
+        'relato': humor_dia.relato if humor_dia else 'Nenhum registro encontrado.',
+        'dados_semana': dados_semana
+    }
+    return render(request, 'core/historico.html', contexto)
