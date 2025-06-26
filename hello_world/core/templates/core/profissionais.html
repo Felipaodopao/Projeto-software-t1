@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Fale com um profissional</title>
+    <link rel="stylesheet" href="{% static 'css/profissionais.css' %}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="{% static 'img/logo-raposa.png' %}" alt="Logo">
+            <span>Além da Sala</span>
+        </div>
+        <div class="top-right">
+            <a href="#" class="btn-voltar">← Acompanhamento Emocional</a>
+
+            {% if not request.user.is_authenticated %}
+                <a href="{% url 'login' %}" style="text-decoration:none">
+                    <div class="perfil-icon"></div>
+                </a>
+            {% else %}
+                <a href="{% url 'perfil' %}" style="text-decoration:none">
+                    <div class="perfil-icon"></div>
+                </a>
+            {% endif %}
+        </div>
+    </header>
+
+    <main class="main">
+        <h1>Fale com um profissional</h1>
+        <div class="cards">
+            <div class="card">
+                <div class="icon-placeholder"></div>
+                <h2>Psicopedagogo</h2>
+                <p>Aqui é um espaço seguro para você conversar com um psicopedagogo</p>
+                <a href="#" class="btn-clique">Clique aqui</a>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder"></div>
+                <h2>Psicólogo</h2>
+                <p>Aqui é um espaço seguro para você conversar com um psicólogo</p>
+                <a href="#" class="btn-clique">Clique aqui</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

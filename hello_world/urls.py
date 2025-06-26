@@ -29,6 +29,7 @@ urlpatterns = [
     path('register/', core_views.register_view, name='register'), 
     path('login/', core_views.login_view, name='login'),
     path("organiza/", core_views.organize_tempo, name="organize_tempo"), 
+    path('profissionais/', core_views.profissionais_view, name='profissionais')
 ]
 
 if settings.DEBUG:

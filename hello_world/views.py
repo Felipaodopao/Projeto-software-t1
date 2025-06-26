@@ -45,3 +45,6 @@ def register_view(request):
 
 def organize_tempo(request):
     return render(request, "core/organiza.html") 
+
+def profissionais_view(request):
+    return render(request, 'core/profissionais.html')
