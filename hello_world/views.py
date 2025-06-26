@@ -42,3 +42,6 @@ def register_view(request):
         return redirect('home')
 
     return render(request, 'core/register.html')
+
+def organize_tempo(request):
+    return render(request, "core/organiza.html") 

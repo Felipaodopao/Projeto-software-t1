@@ -28,8 +28,10 @@ urlpatterns = [
     path("__reload__/", include("django_browser_reload.urls")),
     path('register/', core_views.register_view, name='register'), 
     path('login/', core_views.login_view, name='login'),
+    path("organiza/", core_views.organize_tempo, name="organize_tempo"), 
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
