@@ -26,7 +26,8 @@ def login_view(request):
             messages.error(request, "Usuário ou senha inválidos.")
     return render(request, "core/login.html")
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
+@login_required(login_url='/register')
 def home(request):
     return render(request, 'core/home.html')
 
@@ -45,7 +46,8 @@ def register_view(request):
 
     return render(request, 'core/register.html')
 
-@login_required
+# @login_required
+@login_required(login_url='/register')
 def respiracao_view(request):
     return render(request, 'core/respiracao.html')
 
