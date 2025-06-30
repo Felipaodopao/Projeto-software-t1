@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_browser_reload",
+    "hello_world.core",
     "alemdasala"
 ]
 
@@ -60,12 +61,12 @@ MIDDLEWARE = [
 
 X_FRAME_OPTIONS = "ALLOW-FROM preview.app.github.dev"
 
-ROOT_URLCONF = "hello_world.urls"
+ROOT_URLCONF = "alemdasala.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "hello_world" / "templates"],
+        "DIRS": [BASE_DIR / "alemdasala" / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -78,7 +79,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "hello_world.wsgi.application"
+WSGI_APPLICATION = "alemdasala.wsgi.application"
 
 
 # Database
@@ -127,14 +128,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATICFILES_DIRS = [
-    BASE_DIR / "hello_world" / "static",
+    BASE_DIR / "alemdasala" / "static",
 ]
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "hello_world" / "staticfiles"
+STATIC_ROOT = BASE_DIR / "alemdasala" / "staticfiles"
 
 MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "hello_world" / "media"
+MEDIA_ROOT = BASE_DIR / "alemdasala" / "media"
 
 
 # Default primary key field type

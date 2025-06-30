@@ -1,24 +1,27 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Bem-estar</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/style.css' %}">
 </head>
 <body>
+    <div class="header">
+        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+    </div>
     <div class="login-container">
-        <div class="login-card">
-            <img src="logo.png" alt="Logo do site" class="logo">
-            <h2>Bem-vindo de volta</h2>
-            <p>Faça login para continuar</p>
-            <form action="/login" method="post">
-                <input type="text" name="username" placeholder="Usuário" required>
-                <input type="password" name="password" placeholder="Senha" required>
-                <button type="submit">Entrar</button>
-            </form>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="email">Email</label>
+            <input type="text" id="email" name="username" placeholder="Value">
+
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="password" placeholder="Value">
+
+            <button type="submit">Sign In</button>
             <a href="#">Esqueceu a senha?</a>
-        </div>
+        </form>
     </div>
 </body>
 </html>

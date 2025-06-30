@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/style.css' %}">
+</head>
+<body>
+    <div class="header">
+        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+    </div>
+    <div class="register-container">
+        <form method="POST">
+            {% csrf_token %}
+            <label for="username">Nome de usuário</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Cadastrar</button>
+        </form>
+        <a href="{% url 'login' %}">Já tem conta? Entrar</a>
+    </div>
+</body>
+</html>

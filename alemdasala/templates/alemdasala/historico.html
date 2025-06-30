@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Histórico de Humor - Além da Sala</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/historico.css' %}">
+</head>
+<body>
+    <header class="topo">
+        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        <h1>Além da Sala</h1>
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+        </div>
+    </header>
+
+    <main>
+        <h2>Aqui você consegue ver seu histórico de humor, selecione uma data:</h2>
+
+        <section class="calendario-relato">
+            <div class="calendario">
+                <label for="data">Escolha uma data</label>
+                <input type="date" id="data" name="data" value="{{ data_hoje }}">
+            </div>
+
+            <div class="relato-dia">
+                <h3>{{ data_formatada }}</h3>
+                <p>{{ relato }}</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="sair">Sair</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="grafico-semanal">
+            <h2>Seu humor durante a semana</h2>
+            <div class="barras">
+                {% for dia, valor in dados_semana.items %}
+                    <div class="barra">
+                        <div class="nivel" style="height: {{ valor|default_if_none:0 }}%;"></div>
+                        <span>{{ dia }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+</body>
+</html>

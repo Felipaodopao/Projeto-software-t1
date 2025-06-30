@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Respiração Guiada</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/respiracao.css' %}">
+</head>
+<body>
+    <header class="top-header">
+        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+        </div>
+    </header>
+
+    <main class="main-container">
+        <h2>Inspire e Expire Tranquilamente</h2>
+        <div class="circle" id="breathingCircle"></div>
+        <div class="controls">
+            <button id="pauseBtn">⏵ Pausar</button>
+        </div>
+    </main>
+
+    <script>
+        const circle = document.getElementById("breathingCircle");
+        const btn = document.getElementById("pauseBtn");
+
+        let paused = false;
+
+        btn.addEventListener("click", () => {
+            paused = !paused;
+            if (paused) {
+                circle.style.animationPlayState = 'paused';
+                btn.innerText = "▶ Retomar";
+            } else {
+                circle.style.animationPlayState = 'running';
+                btn.innerText = "⏸ Pausar";
+            }
+        });
+    </script>
+</body>
+</html>

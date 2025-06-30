@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Além da Sala - Home</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/style.css' %}">
+</head>
+<body>
+    <div class="topo">
+        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'login' %}">
+                <div class="perfil-icon"></div>
+            </a>
+        {% else %}
+            <div class="perfil-icon">
+               <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="container">
+    <div class="coluna-esquerda">
+      <div class="card destaque">
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'login' %}" style="text-decoration:none">
+              <h2>Como você está se sentindo hoje?</h2>
+              <p>Registre seu humor hoje e veja o retrospecto</p>
+            </a>
+          {% else %}
+            <h2>Como você está se sentindo hoje?</h2>
+            <p>Registre seu humor hoje e veja o retrospecto</p>
+          {% endif %}
+      </div>
+      <div class="card fale">
+          {% if not request.user.is_authenticated %}
+            <a href="{% url 'login' %}" style="text-decoration:none">
+                <h2>Fale com alguém</h2>
+                <p>Converse com um profissional da área para obter ajuda ou suporte</p>
+            </a>
+          {% else %}
+            <h2>Fale com alguém</h2>
+            <p>Converse com um profissional da área para obter ajuda ou suporte</p>
+          {% endif %}
+      </div>
+    </div>
+
+    <div class="coluna-direita">
+      <div class="card respiracao">
+          <a href="{% url 'respiracao' %}" style="text-decoration:none">
+          <h2>Respiração guiada</h2>
+            <p>Faça uma pausa e respire um pouco para aliviar o estresse</p>
+          </a>
+      </div>
+      <div class="card meditacao">
+            <a href="{% url 'meditacao' %}" style="text-decoration:none">
+                <h2>Meditação rápida</h2>
+                <p>Medite com sons da nossa biblioteca extensa</p>
+            </a>
+      </div>
+      <div class="card organize">
+        {% if not request.user.is_authenticated %}
+            <a href="{% url 'login' %}" style="text-decoration:none">
+                <h2>Organize seu tempo</h2>
+                <p>Não fique sobrecarregado por tarefas</p> 
+            </a>
+          {% else %}    
+            <h2>Organize seu tempo</h2>
+            <p>Não fique sobrecarregado por tarefas</p> 
+          {% endif %}
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
