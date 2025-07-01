@@ -1,0 +1,99 @@
+/* Estilo alinhado ao home.html */
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.topo {
+    background-color: #d7c8ec;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.perfil-icon img {
+    width: 55px;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 24px;
+}
+
+.cards {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: #fff8dc;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    padding: 32px 24px;
+    width: 320px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:hover {
+    background-color: #fdf2cd;
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    color: #4b2e83;
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.btn-clique {
+    background-color: #d7c8ec;
+    color: #4b2e83;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-clique:hover {
+    background-color: #bca6d3;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.95em;
+    margin-top: 10px;
+    text-align: center;
+    display: block;
+}

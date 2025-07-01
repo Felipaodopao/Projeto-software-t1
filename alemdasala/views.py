@@ -82,3 +82,11 @@ def historico_humor(request):
 @login_required(login_url='/register')
 def meditacao(request):
     return render(request, 'alemdasala/meditacao.html')
+
+@login_required(login_url='/register')
+def organize_tempo(request):
+    return render(request, "alemdasala/organiza.html") 
+
+@login_required(login_url='/register')
+def profissionais_view(request):
+    return render(request, 'alemdasala/profissionais.html')

@@ -13,6 +13,8 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('respiracao/', views.respiracao_view, name='respiracao'),
     path('historico/', views.historico_humor, name='historico'),
+    path("organiza/", views.organize_tempo, name="organiza"), 
+    path('profissionais/', views.profissionais_view, name='profissionais') 
 ]
 
 if settings.DEBUG:

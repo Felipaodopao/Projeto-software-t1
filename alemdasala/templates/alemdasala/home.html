@@ -34,15 +34,11 @@
           {% endif %}
       </div>
       <div class="card fale">
-          {% if not request.user.is_authenticated %}
-            <a href="{% url 'login' %}" style="text-decoration:none">
+            <a href="{% url 'profissionais' %}" style="text-decoration:none">
                 <h2>Fale com alguém</h2>
                 <p>Converse com um profissional da área para obter ajuda ou suporte</p>
             </a>
-          {% else %}
-            <h2>Fale com alguém</h2>
-            <p>Converse com um profissional da área para obter ajuda ou suporte</p>
-          {% endif %}
+         
       </div>
     </div>
 
@@ -60,16 +56,11 @@
             </a>
       </div>
       <div class="card organize">
-        {% if not request.user.is_authenticated %}
-            <a href="{% url 'login' %}" style="text-decoration:none">
+            <a href="{% url 'organiza' %}" style="text-decoration:none">
                 <h2>Organize seu tempo</h2>
                 <p>Não fique sobrecarregado por tarefas</p> 
             </a>
-          {% else %}    
-            <h2>Organize seu tempo</h2>
-            <p>Não fique sobrecarregado por tarefas</p> 
-          {% endif %}
-
+      
       </div>
     </div>
   </div>

@@ -1,0 +1,120 @@
+/* Estilo inspirado no home.html */
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.topo {
+    background-color: #d7c8ec;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.perfil-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.container {
+    max-width: 1300px;
+    max-height: 710px;
+    margin: 40px auto;
+    display: flex;
+    gap: 16px;
+    padding: 24px;
+}
+
+.coluna-esquerda {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 16px;
+    flex: 1;
+}
+
+.coluna-direita {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 16px;
+    flex: 1;
+}
+
+.card {
+    background: #fff8dc;
+    padding-left: 24px;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background-color: #fdf2cd;
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    color: #4b2e83;
+    font-size: 40px;
+}
+
+.card p {
+    font-size: 26px;
+    line-height: 1.4;
+}
+
+.login-container,
+.register-container {
+    background-color: #fff;
+    width: 300px;
+    padding: 20px;
+    margin: 40px auto;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #2e2e2e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+a {
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #333;
+}

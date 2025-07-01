@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Além da Sala - Organize seu tempo</title>
+        <link rel="stylesheet" href="{% static 'alemdasala/css/organiza.css' %}">
+        <div class="topo">
+          <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+          <div class="perfil-icon"></div>
+        </div>
+    </head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Organize seu tempo</h2>
+      <p class="subtitle">
+        Liste aqui os seus horários e as suas atividades diárias:
+      </p>
+      <ul class="checklist">
+        <li><input type="checkbox" /> List item</li>
+        <li><input type="checkbox" /> List item</li>
+        <li><input type="checkbox" /> List item</li>
+        <li><input type="checkbox" /> List item</li>
+        <li><input type="checkbox" /> List item</li>
+      </ul>
+      <p class="info">
+        Vamos usar essas informações para criar uma rotina adequada para que você não se sinta sobrecarregado(a)!
+      </p>
+    </div>
+  </div>
+</body>
+</html>
