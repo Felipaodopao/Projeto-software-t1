@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 class Humor(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     data = models.DateField()
-    nivel = models.IntegerField()  # Valor de 0 a 100, por exemplo
+    nivel = models.IntegerField(null=True, blank=True)
+    tipo = models.CharField(max_length=20, blank=True)
     relato = models.TextField(blank=True)
 
     class Meta:

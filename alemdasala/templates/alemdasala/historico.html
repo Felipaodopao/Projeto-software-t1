@@ -36,15 +36,26 @@
 
         <section class="grafico-semanal">
             <h2>Seu humor durante a semana</h2>
-            <div class="barras">
-                {% for dia, valor in dados_semana.items %}
-                    <div class="barra">
-                        <div class="nivel" style="height: {{ valor|default_if_none:0 }}%;"></div>
-                        <span>{{ dia }}</span>
+            <div class="barras" style="display: flex; align-items: flex-end; gap: 10px;">
+                {% for dia, info in dados_semana.items %}
+                    <div class="barra" style="text-align: center;">
+                        <div class="nivel"
+                            style="height: {{ info.valor|add:20 }}px; width: 40px; background-color: {{ info.cor }}; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                            <span style="font-size: 2em;">{{ info.emoji }}</span>
+                        </div>
+                        <span style="font-size: 0.9em;">{{ dia }}</span>
                     </div>
                 {% endfor %}
             </div>
         </section>
+
+        <div class="relato-dia">
+            <h3>{{ data_formatada }}</h3>
+            {% if tipo_humor %}
+                <p><strong>Humor:</strong> {{ tipo_humor|title }}</p>
+            {% endif %}
+            <p>{{ relato }}</p>
+        </div>
     </main>
 </body>
 </html>

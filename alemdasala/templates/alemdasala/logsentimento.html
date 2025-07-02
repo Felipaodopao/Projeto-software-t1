@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Humor Diario</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/profissionais.css' %}">
+</head>
+<body>
+    <div class="topo">
+        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo"> 
+        <div class="top-right">
+            <div class="perfil-icon">
+                <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+            </div>
+        </div>
+    </div>
+
+    <main class="main">
+        <h1>O que deseja fazer?</h1>
+        <div class="cards">
+            <div class="card">
+                <div class="icon-placeholder"></div>
+                <h2>Registre seu humor hoje</h2>
+                <p>Deixe registrado como esta se sentindo hoje e relate suas emoções</p>
+                <a href="{% url 'humor' %}" class="btn-clique">Clique aqui</a>
+            </div>
+            <div class="card">
+                <div class="icon-placeholder"></div>
+                <h2>Historico</h2>
+                <p>Veja a variação do seu humor e emoções ao longo do tempo</p>
+                <a href="{% url 'historico' %}" class="btn-clique">Clique aqui</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
