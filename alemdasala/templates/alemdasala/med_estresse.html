@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Alívio do Estresse</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/med_estresse.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo Além da Sala">
+            <h1>Além da Sala</h1>
+        </header>
+
+        <main>
+            <h2>Alívio do Estresse</h2>
+            <p>Solte as tensões do corpo e da mente com esta prática calmante.</p>
+
+            <div class="video-container">
+                 <iframe 
+                    src="https://www.youtube.com/embed/pv-aymg97JM" 
+                    title="Meditação para Alívio do Estresse"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                 </iframe>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
