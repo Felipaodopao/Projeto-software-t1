@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marcar horário com Psicólogo</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/psicologo.css' %}" />
+</head>
+<body>
+    <header class="topo">
+        <a href="{% url 'home' %}"> 
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        </a>
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+        </div>
+    </header>
+
+    <main>
+        <h2>Marcar horário com um Psicólogo</h2>
+        <div class="container">
+            <div class="calendar">
+                <label for="date">Escolha uma data</label>
+                <input type="date" id="date" name="date" value="2025-08-17" />
+            </div>
+            <div class="psychologist-card">
+                <h3>Psicólogo</h3>
+                <p>Aqui é um espaço seguro para você conversar com um psicólogo</p>
+            </div>
+        </div>
+        <div class="more-info">
+            <h3>Quer contar um pouco mais?</h3>
+            <input type="text" placeholder="Digite aqui..." />
+        </div>
+    </main>
+</body>
+</html>

@@ -32,7 +32,8 @@ body {
     background-color: #ede5f8;
     padding: 20px;
     border-radius: 12px;
-    width: 40%;
+    width: 650px;
+    margin: 40px;
 }
 
 .grafico-semanal {

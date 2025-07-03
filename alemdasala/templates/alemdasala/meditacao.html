@@ -1,28 +1,37 @@
 {% load static %}
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Meditação Guiada - Além da Sala</title>
-    <link rel="stylesheet" href="{% static 'alemdasala/css/meditacao.css' %}">
+    <link rel="stylesheet" href="{% static 'alemdasala/css/medita.css' %}">
 </head>
 <body>
-    <div class="container">
-        <header>
+    <!-- Cabeçalho padrão -->
+    <header class="topo">
+        <a href="{% url 'home' %}">
             <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo Além da Sala" class="logo">
-            <h1>Além da Sala</h1>
-        </header>
+        </a>
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+        </div>
+    </header>
 
-        <main>
-            <h2>Meditação Guiada</h2>
-            <p>Siga este exercício de respiração para se acalmar e relaxar</p>
+    <!-- Conteúdo principal -->
+    <main class="main">
+        <div class="container">
+            <div class="card">
+                <h1>Meditação Guiada</h1>
+                <p>Siga este exercício de respiração para se acalmar e relaxar.</p>
 
             <div class="button-grid">
                 <a href="{% url 'med_relaxamento' %}" class="option">Relaxamento</a>
                 <a href="{% url 'med_foco' %}" class="option">Foco</a>
                 <a href="{% url 'med_gratidao' %}" class="option">Gratidão</a>
                 <a href="{% url 'med_estresse' %}" class="option">Alívio do Estresse</a>
+
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 </body>
 </html>

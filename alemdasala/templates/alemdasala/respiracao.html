@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="{% static 'alemdasala/css/respiracao.css' %}">
 </head>
 <body>
-    <header class="top-header">
-        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+    <header class="topo">
+        <a href="{% url 'home' %}"> 
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        </a>
         <div class="perfil-icon">
             <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
         </div>

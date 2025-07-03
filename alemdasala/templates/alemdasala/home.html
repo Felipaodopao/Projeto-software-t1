@@ -23,15 +23,12 @@
     <div class="container">
     <div class="coluna-esquerda">
       <div class="card destaque">
-        {% if not request.user.is_authenticated %}
-            <a href="{% url 'login' %}" style="text-decoration:none">
+        
+            <a href="{% url 'logsentimento' %}" style="text-decoration:none">
               <h2>Como você está se sentindo hoje?</h2>
               <p>Registre seu humor hoje e veja o retrospecto</p>
             </a>
-          {% else %}
-            <h2>Como você está se sentindo hoje?</h2>
-            <p>Registre seu humor hoje e veja o retrospecto</p>
-          {% endif %}
+                    
       </div>
       <div class="card fale">
             <a href="{% url 'profissionais' %}" style="text-decoration:none">

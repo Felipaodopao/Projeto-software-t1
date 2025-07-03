@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="{% static 'alemdasala/css/style.css' %}">
 </head>
 <body>
-    <div class="header">
-        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
-    </div>
+    
     <div class="login-container">
-        <form method="POST">
-            {% csrf_token %}
-            <label for="email">Email</label>
-            <input type="text" id="email" name="username" placeholder="Value">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <form method="POST">
+        {% csrf_token %}
+        <label for="email">Nome de usuário</label>
+        <input type="text" id="email" name="username" placeholder="Digite seu nome de usuário">
 
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" name="password" placeholder="Value">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="password" placeholder="Senha">
 
-            <button type="submit">Sign In</button>
-            <a href="#">Esqueceu a senha?</a>
-        </form>
-    </div>
+        <button type="submit">Sign In</button>
+        <a href="#">Esqueceu a senha?</a>
+    </form>
+</div>
 </body>
 </html>

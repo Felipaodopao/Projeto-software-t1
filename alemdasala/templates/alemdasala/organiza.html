@@ -1,32 +1,46 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Além da Sala - Organize seu tempo</title>
-        <link rel="stylesheet" href="{% static 'alemdasala/css/organiza.css' %}">
-        <div class="topo">
-          <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
-          <div class="perfil-icon"></div>
-        </div>
-    </head>
+<head>
+    <meta charset="UTF-8" />
+    <title>Além da Sala - Organize seu tempo</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/organiza.css' %}">
+</head>
 <body>
+  <div class="topo">
+    <a href="{% url 'home' %}"> 
+      <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+    </a>
+    <div class="perfil-icon">
+        <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+    </div>
+  </div>
   <div class="container">
     <div class="card">
       <h2>Organize seu tempo</h2>
       <p class="subtitle">
         Liste aqui os seus horários e as suas atividades diárias:
       </p>
-      <ul class="checklist">
-        <li><input type="checkbox" /> List item</li>
-        <li><input type="checkbox" /> List item</li>
-        <li><input type="checkbox" /> List item</li>
-        <li><input type="checkbox" /> List item</li>
-        <li><input type="checkbox" /> List item</li>
+      <form method="post" style="width:100%;display:flex;gap:10px;margin-bottom:20px;">
+        {% csrf_token %}
+        <input type="date" name="data" required style="padding:8px;border-radius:6px;border:1px solid #ccc;">
+        <input type="text" name="descricao" placeholder="Nova tarefa..." required style="flex:1;padding:8px;border-radius:6px;border:1px solid #ccc;">
+        <button type="submit" name="add-task" style="padding:8px 18px;border-radius:6px;background:#d7c8ec;color:#4b2e83;font-weight:bold;border:none;cursor:pointer;">Adicionar</button>
+      </form>
+      <ul class="checklist" id="checklist">
+        {% for tarefa in tarefas %}
+          <li>
+            <form method="post" style="display:inline;">
+              {% csrf_token %}
+              <input type="hidden" name="concluir" value="{{ tarefa.id }}">
+              <input type="checkbox" onChange="this.form.submit()">
+              <span><strong>{{ tarefa.data|date:"d/m/Y" }}</strong>: {{ tarefa.descricao }}</span>
+            </form>
+          </li>
+        {% empty %}
+          <li>Nenhuma tarefa cadastrada.</li>
+        {% endfor %}
       </ul>
-      <p class="info">
-        Vamos usar essas informações para criar uma rotina adequada para que você não se sinta sobrecarregado(a)!
-      </p>
     </div>
   </div>
 </body>
