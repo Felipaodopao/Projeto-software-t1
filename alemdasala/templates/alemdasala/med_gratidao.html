@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meditação de Gratidão</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/med_gratidao.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo Além da Sala">
+            <h1>Além da Sala</h1>
+        </header>
+
+        <main>
+            <h2>Meditação de Gratidão</h2>
+            <p>Reflita sobre o que te faz feliz e cultive a gratidão no dia a dia.</p>
+
+            <div class="video-container">
+               <iframe 
+                        src="https://www.youtube.com/embed/Z_cWOox88T4" 
+                        title="Meditação de Gratidão"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

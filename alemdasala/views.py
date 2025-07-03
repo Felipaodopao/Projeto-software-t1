@@ -119,6 +119,22 @@ def historico_humor(request):
 def meditacao(request):
     return render(request, 'alemdasala/meditacao.html')
 
+@login_required(login_url='/register/')
+def med_foco(request):
+    return render(request, 'alemdasala/med_foco.html')
+
+@login_required(login_url='/register/')
+def med_relaxamento(request):
+    return render(request, 'alemdasala/med_relaxamento.html')
+
+@login_required(login_url='/register/')
+def med_gratidao(request):
+    return render(request, 'alemdasala/med_gratidao.html')
+
+@login_required(login_url='/register/')
+def med_estresse(request):
+    return render(request, 'alemdasala/med_estresse.html')
+
 @login_required(login_url='/register')
 def organize_tempo(request):
     return render(request, "alemdasala/organiza.html") 

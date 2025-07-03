@@ -13,12 +13,20 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('respiracao/', views.respiracao_view, name='respiracao'),
     path('historico/', views.historico_humor, name='historico'),
-    path("organiza/", views.organize_tempo, name="organiza"), 
+    path('organiza/', views.organize_tempo, name='organiza'),
     path('profissionais/', views.profissionais_view, name='profissionais'),
-    path("logsentimento/", views.logsentimento, name="logsentimento"),
-    path("humor/", views.humor, name="humor"),
+
+    # Outras rotas
+    path('logsentino/', views.logsentimento, name='logsentimento'),
+    path('humor/', views.humor, name='humor'),
     path('psicologo/', views.psicologo, name='psicologo'),
     path('psicopedagogo/', views.psicopedagogo, name='psicopedagogo'),
+
+    # Meditações específicas
+    path('meditacao/foco/', views.med_foco, name='med_foco'),
+    path('meditacao/relaxamento/', views.med_relaxamento, name='med_relaxamento'),
+    path('meditacao/gratidao/', views.med_gratidao, name='med_gratidao'),
+    path('meditacao/estresse/', views.med_estresse, name='med_estresse'),
 ]
 
 
