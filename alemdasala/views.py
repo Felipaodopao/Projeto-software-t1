@@ -90,3 +90,15 @@ def organize_tempo(request):
 @login_required(login_url='/register')
 def profissionais_view(request):
     return render(request, 'alemdasala/profissionais.html')
+
+def med_foco(request):
+    return render(request, 'alemdasala/med_foco.html')
+
+def med_relaxamento(request):
+    return render(request, 'alemdasala/med_relaxamento.html')
+
+def med_gratidao(request):
+    return render(request, 'alemdasala/med_gratidao.html')
+
+def med_estresse(request):
+    return render(request, 'alemdasala/med_estresse.html')

@@ -16,13 +16,11 @@
             <h2>Meditação Guiada</h2>
             <p>Siga este exercício de respiração para se acalmar e relaxar</p>
 
-            <button class="start-button">Iniciar</button>
-
             <div class="button-grid">
-                <button class="option">Relaxamento</button>
-                <button class="option">Foco</button>
-                <button class="option">Gratidão</button>
-                <button class="option">Alívio do Estresse</button>
+                <a href="{% url 'med_relaxamento' %}" class="option">Relaxamento</a>
+                <a href="{% url 'med_foco' %}" class="option">Foco</a>
+                <a href="{% url 'med_gratidao' %}" class="option">Gratidão</a>
+                <a href="{% url 'med_estresse' %}" class="option">Alívio do Estresse</a>
             </div>
         </main>
     </div>

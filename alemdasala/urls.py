@@ -14,7 +14,12 @@ urlpatterns = [
     path('respiracao/', views.respiracao_view, name='respiracao'),
     path('historico/', views.historico_humor, name='historico'),
     path("organiza/", views.organize_tempo, name="organiza"), 
-    path('profissionais/', views.profissionais_view, name='profissionais') 
+    path('profissionais/', views.profissionais_view, name='profissionais'),
+    path('meditacao/foco/', views.med_foco, name='med_foco'), 
+    path('meditacao/foco/', views.med_foco, name='med_foco'),
+    path('meditacao/relaxamento/', views.med_relaxamento, name='med_relaxamento'),
+    path('meditacao/gratidao/', views.med_gratidao, name='med_gratidao'),
+    path('meditacao/estresse/', views.med_estresse, name='med_estresse'),
 ]
 
 if settings.DEBUG:

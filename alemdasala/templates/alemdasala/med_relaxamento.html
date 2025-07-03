@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Meditação para Relaxamento</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/med_relaxamento.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo Além da Sala">
+            <h1>Além da Sala</h1>
+        </header>
+
+<main>
+    <h2>Meditação para Relaxamento</h2>
+    <p>Desacelere, respire fundo e deixe o estresse ir embora.</p>
+
+    <div class="video-container">
+        <iframe 
+            src="https://www.youtube.com/embed/eMsUrGRjTsg" 
+            title="Meditação para Relaxamento"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</main>
