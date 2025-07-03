@@ -34,6 +34,7 @@ body {
     flex-direction: column;
     gap: 24px;
     padding: 24px;
+    align-items: center;
 }
 
 .cards {
@@ -57,11 +58,7 @@ body {
     text-align: center;
 }
 
-.card:hover {
-    background-color: #fdf2cd;
-    transform: scale(1.03);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
+
 
 .card h2 {
     color: #4b2e83;
@@ -100,4 +97,49 @@ a {
     margin-top: 10px;
     text-align: center;
     display: block;
+}
+
+.start-button {
+    background-color: #d7c8ec;
+    color: #4b2e83;
+    border: none;
+    border-radius: 8px;
+    width: 180px;
+    height: 48px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 16px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.start-button:hover {
+    background-color: #bca6d3;
+    transform: scale(1.05);
+}
+
+.options-grid {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.option {
+    background-color: #b9dfc0;
+    border: none;
+    border-radius: 15px;
+    padding: 12px 24px;
+    font-size: 16px;
+    color: #5c4b6c;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0,0,0,0.07);
+}
+
+.option:hover {
+    background-color: #b9dfc0c4;
+    transform: scale(1.02);
 }

@@ -1,30 +1,39 @@
 {% load static %}
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Meditação Guiada - Além da Sala</title>
-    <link rel="stylesheet" href="{% static 'alemdasala/css/meditacao.css' %}">
+    <link rel="stylesheet" href="{% static 'alemdasala/css/medita.css' %}">
 </head>
 <body>
-    <div class="container">
-        <header>
+    <!-- Cabeçalho padrão -->
+    <header class="topo">
+        <a href="{% url 'home' %}">
             <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo Além da Sala" class="logo">
-            <h1>Além da Sala</h1>
-        </header>
+        </a>
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+        </div>
+    </header>
 
-        <main>
-            <h2>Meditação Guiada</h2>
-            <p>Siga este exercício de respiração para se acalmar e relaxar</p>
+    <!-- Conteúdo principal -->
+    <main class="main">
+        <div class="container">
+            <div class="card">
+                <h1>Meditação Guiada</h1>
+                <p>Siga este exercício de respiração para se acalmar e relaxar.</p>
 
-            <button class="start-button">Iniciar</button>
+                <button class="btn-clique start-button">Iniciar</button>
 
-            <div class="button-grid">
-                <button class="option">Relaxamento</button>
-                <button class="option">Foco</button>
-                <button class="option">Gratidão</button>
-                <button class="option">Alívio do Estresse</button>
+                <div class="options-grid">
+                    <button class="btn-clique option">Relaxamento</button>
+                    <button class="btn-clique option">Foco</button>
+                    <button class="btn-clique option">Gratidão</button>
+                    <button class="btn-clique option">Alívio do Estresse</button>
+                </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
 </body>
 </html>

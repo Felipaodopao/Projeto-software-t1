@@ -7,7 +7,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import date
 from alemdasala.models import Humor
-from datetime import timedelta
+from datetime import date, timedelta
+from babel.dates import format_date
+import locale
+from .models import Tarefa
 
 def index(request):
     context = {
@@ -54,15 +57,31 @@ def respiracao_view(request):
 
 
 def historico_humor(request):
-    data_hoje = request.GET.get('data') or date.today().isoformat()
-    humor_dia = Humor.objects.filter(usuario=request.user, data=data_hoje).first()
+    data_param = request.GET.get('data')
 
-    hoje = date.fromisoformat(data_hoje)
+    if isinstance(data_param, str):
+        hoje = date.fromisoformat(data_param)
+    else:
+        hoje = date.today()
+
+    try:
+        locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+    except locale.Error:
+        try:
+            locale.setlocale(locale.LC_TIME, 'pt_BR')
+        except:
+            pass  
+    
+    
+
+    data_formatada = format_date(hoje, format="full", locale='pt_BR').capitalize()
+
+    humor_dia = Humor.objects.filter(usuario=request.user, data=hoje).first()
+
     inicio_semana = hoje - timedelta(days=hoje.weekday())
     dias_semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado', 'Domingo']
     dados_semana = {}
 
-    # Mapeamento de humor para valor, cor e emoji
     humor_map = {
         'feliz':    {'valor': 100, 'cor': '#ffe066', 'emoji': '😊'},
         'calmo':    {'valor': 80,  'cor': '#b2f2bb', 'emoji': '😌'},
@@ -87,12 +106,13 @@ def historico_humor(request):
         }
 
     contexto = {
-        'data_hoje': data_hoje,
-        'data_formatada': humor_dia.data.strftime('%A, %d de %B') if humor_dia else '',
-        'relato': humor_dia.relato if humor_dia else 'Nenhum registro encontrado.',
-        'tipo_humor': humor_dia.tipo if humor_dia else '',
-        'dados_semana': dados_semana,
-    }
+    'data_hoje': hoje,  # pode usar se quiser em outros lugares
+    'data_formatada': data_formatada,  # já vem pronta pro template
+    'relato': humor_dia.relato if humor_dia else 'Nenhum registro encontrado.',
+    'tipo_humor': humor_dia.tipo if humor_dia else '',
+    'dados_semana': dados_semana,
+}
+
     return render(request, 'alemdasala/historico.html', contexto)
 
 @login_required(login_url='/register')
@@ -129,3 +149,26 @@ def humor(request):
         return redirect('humor')  # Redireciona para a mesma página
 
     return render(request, 'alemdasala/humor.html')
+
+@login_required(login_url='/register')
+def psicologo(request):
+    return render(request, 'alemdasala/psicologo.html')
+
+@login_required(login_url='/register')
+def psicopedagogo(request):
+    return render(request, 'alemdasala/psicopedagogo.html')
+
+@login_required(login_url='/register')
+def organize_tempo(request):
+    if request.method == 'POST':
+        if 'add-task' in request.POST:
+            descricao = request.POST.get('descricao')
+            data = request.POST.get('data')
+            if descricao and data:
+                Tarefa.objects.create(usuario=request.user, descricao=descricao, data=data)
+        elif 'concluir' in request.POST:
+            tarefa_id = request.POST.get('concluir')
+            Tarefa.objects.filter(id=tarefa_id, usuario=request.user).delete()
+
+    tarefas = Tarefa.objects.filter(usuario=request.user).order_by('data')
+    return render(request, "alemdasala/organiza.html", {"tarefas": tarefas})

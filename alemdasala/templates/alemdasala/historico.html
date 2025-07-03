@@ -1,4 +1,6 @@
 {% load static %}
+{% load l10n %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,8 +10,10 @@
 </head>
 <body>
     <header class="topo">
-        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
-        <h1>Além da Sala</h1>
+        <a href="{% url 'home' %}"> 
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        </a>
+        
         <div class="perfil-icon">
             <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
         </div>
@@ -20,17 +24,18 @@
 
         <section class="calendario-relato">
             <div class="calendario">
-                <label for="data">Escolha uma data</label>
-                <input type="date" id="data" name="data" value="{{ data_hoje }}">
+                <form method="get" style="display:inline;">
+                    <label for="data">Escolha uma data</label>
+                    <input type="date" id="data" name="data" value="{{ data_hoje }}" onchange="this.form.submit()">
+                </form>
             </div>
 
             <div class="relato-dia">
                 <h3>{{ data_formatada }}</h3>
+                {% if tipo_humor %}
+                    <p><strong>Humor:</strong> {{ tipo_humor|title }}</p>
+                {% endif %}
                 <p>{{ relato }}</p>
-                <form method="post">
-                    {% csrf_token %}
-                    <button type="submit" name="sair">Sair</button>
-                </form>
             </div>
         </section>
 
@@ -48,14 +53,7 @@
                 {% endfor %}
             </div>
         </section>
-
-        <div class="relato-dia">
-            <h3>{{ data_formatada }}</h3>
-            {% if tipo_humor %}
-                <p><strong>Humor:</strong> {{ tipo_humor|title }}</p>
-            {% endif %}
-            <p>{{ relato }}</p>
-        </div>
+        
     </main>
 </body>
 </html>

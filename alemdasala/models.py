@@ -1,6 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+class Tarefa(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    descricao = models.CharField(max_length=255)
+    data = models.DateField()
+    concluida = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['data']
+
+    def __str__(self):
+        return f"{self.descricao} ({self.data})"
+    
+
 class Humor(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     data = models.DateField()

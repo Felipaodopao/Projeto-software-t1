@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="{% static 'alemdasala/css/profissionais.css' %}">
 </head>
 <body>
-    <div class="topo">
-        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo"> 
-        <div class="top-right">
-            <div class="perfil-icon">
-                <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
-            </div>
+    <header class="topo">
+        <a href="{% url 'home' %}"> 
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        </a>
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
         </div>
-    </div>
+    </header>
 
     <main class="main">
         <h1>Fale com um profissional</h1>
@@ -23,13 +23,13 @@
                 <div class="icon-placeholder"></div>
                 <h2>Psicopedagogo</h2>
                 <p>Aqui é um espaço seguro para você conversar com um psicopedagogo</p>
-                <a href="#" class="btn-clique">Clique aqui</a>
+                <a href="{% url 'psicopedagogo' %}" class="btn-clique">Clique aqui</a>
             </div>
             <div class="card">
                 <div class="icon-placeholder"></div>
                 <h2>Psicólogo</h2>
                 <p>Aqui é um espaço seguro para você conversar com um psicólogo</p>
-                <a href="#" class="btn-clique">Clique aqui</a>
+                <a href="{% url 'psicologo' %}" class="btn-clique">Clique aqui</a>
             </div>
         </div>
     </main>

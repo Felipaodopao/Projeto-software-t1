@@ -8,7 +8,9 @@
 </head>
 <body>
     <div class="topo">
-        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo"> 
+        <a href="{% url 'home' %}"> 
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        </a>
         <div class="top-right">
             <div class="perfil-icon">
                 <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
@@ -17,7 +19,6 @@
     </div>
 
     <main class="main">
-        <h1>O que deseja fazer?</h1>
         <div class="cards">
             <div class="card">
                 <div class="icon-placeholder"></div>
@@ -27,7 +28,7 @@
             </div>
             <div class="card">
                 <div class="icon-placeholder"></div>
-                <h2>Historico</h2>
+                <h2>Historico do seu humor recente</h2>
                 <p>Veja a variação do seu humor e emoções ao longo do tempo</p>
                 <a href="{% url 'historico' %}" class="btn-clique">Clique aqui</a>
             </div>

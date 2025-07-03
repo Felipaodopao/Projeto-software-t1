@@ -17,7 +17,10 @@ urlpatterns = [
     path('profissionais/', views.profissionais_view, name='profissionais'),
     path("logsentimento/", views.logsentimento, name="logsentimento"),
     path("humor/", views.humor, name="humor"),
+    path('psicologo/', views.psicologo, name='psicologo'),
+    path('psicopedagogo/', views.psicopedagogo, name='psicopedagogo'),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
