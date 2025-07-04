@@ -76,7 +76,7 @@ body {
 }
 
 .login-container {
-  background-color: #fff;
+  background-color: #fff8dc;
   width: 300px;
   padding: 20px;
   margin: 40px auto;
@@ -85,7 +85,7 @@ body {
 }
 
 .register-container {
-  background-color: #fff;
+  background-color: #fff8dc;
   width: 300px;
   padding: 20px;
   margin: 40px auto;
@@ -125,4 +125,81 @@ a {
   text-align: center;
   font-size: 0.9em;
   color: #333;
+}
+
+.perfil-menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.perfil-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    background: #fff8dc;
+    border: 1px solid #e0d6ef;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgba(75, 46, 131, 0.10);
+    min-width: 120px;
+    z-index: 100;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.perfil-menu-wrapper:hover .perfil-dropdown,
+.perfil-menu-wrapper:focus-within .perfil-dropdown {
+    display: block;
+}
+
+.logout-btn {
+    background: #d7c8ec;
+    color: #4b2e83;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.logout-btn:hover {
+    background: #bba3e3;
+    color: #2d1a4d;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* <-- Muda de center para stretch */
+}
+
+.login-container label {
+  text-align: left;
+  width: 90%;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 90%;
+  max-width: 300px;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  display: block;
+  box-sizing: border-box;
+  text-align: left;
+  margin-left: auto; 
+  margin-right: auto;  
 }

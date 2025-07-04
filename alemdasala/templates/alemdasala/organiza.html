@@ -41,6 +41,14 @@
           <li>Nenhuma tarefa cadastrada.</li>
         {% endfor %}
       </ul>
+      <h3>Consultas agendadas</h3>
+      <ul>
+        {% for consulta in consultas %}
+          <li><strong>{{ consulta.data|date:"d/m/Y" }}</strong>: Consulta com {{ consulta.get_tipo_display }} {% if consulta.observacao %}- {{ consulta.observacao }}{% endif %}</li>
+        {% empty %}
+          <li>Nenhuma consulta agendada.</li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </body>

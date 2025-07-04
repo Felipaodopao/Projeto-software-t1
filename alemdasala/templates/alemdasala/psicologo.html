@@ -20,18 +20,35 @@
     <main>
         <h2>Marcar horário com um Psicólogo</h2>
         <div class="container">
-            <div class="calendar">
-                <label for="date">Escolha uma data</label>
-                <input type="date" id="date" name="date" value="2025-08-17" />
-            </div>
-            <div class="psychologist-card">
-                <h3>Psicólogo</h3>
-                <p>Aqui é um espaço seguro para você conversar com um psicólogo</p>
-            </div>
+            <form method="post">
+                {% csrf_token %}
+                <div class="calendar">
+                    <label for="date">Escolha uma data</label>
+                    <input type="date" id="date" name="date" required />
+                </div>
+                <div class="more-info">
+                    <h3>Quer contar um pouco mais?</h3>
+                    <input type="text" name="observacao" placeholder="Digite aqui..." />
+                </div>
+                <button type="submit">Agendar Consulta</button>
+            </form>
         </div>
-        <div class="more-info">
-            <h3>Quer contar um pouco mais?</h3>
-            <input type="text" placeholder="Digite aqui..." />
+        <div class="consultas-agendadas">
+            <h3>Consultas agendadas</h3>
+            <ul>
+                {% for consulta in consultas %}
+                    <li>
+                        {{ consulta.data|date:"d/m/Y" }} - {{ consulta.observacao }}
+                        <form method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <input type="hidden" name="delete_consulta" value="{{ consulta.id }}">
+                            <button type="submit" class="btn-desmarcar">Desmarcar</button>
+                        </form>
+                    </li>
+                {% empty %}
+                    <li>Nenhuma consulta agendada.</li>
+                {% endfor %}
+            </ul>
         </div>
     </main>
 </body>

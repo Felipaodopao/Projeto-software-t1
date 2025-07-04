@@ -6,15 +6,33 @@
 }
 
 body {
-    background: linear-gradient(to bottom, #dcd6f7, #fef9ff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+    font-family: "Open Sans", sans-serif;
+    background: #f4f4f4;
+    margin: 0;
+    padding: 0;
 }
 
+.topo {
+    background-color: #d7c8ec;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.perfil-icon img {
+    width: 55px;
+}
+
+
 .login-container {
-    background-color: #ffffff;
+    background-color: #fff8dc;
     padding: 40px;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);

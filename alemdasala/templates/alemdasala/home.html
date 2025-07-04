@@ -14,8 +14,16 @@
                 <div class="perfil-icon"></div>
             </a>
         {% else %}
-            <div class="perfil-icon">
-               <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+            <div class="perfil-menu-wrapper">
+                <div class="perfil-icon">
+                    <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+                </div>
+                <div class="perfil-dropdown">
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-btn">Logout</button>
+                    </form>
+                </div>
             </div>
         {% endif %}
     </div>
