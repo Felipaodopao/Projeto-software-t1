@@ -28,6 +28,13 @@ body {
     margin: 30px;
 }
 
+.calendario {
+    text-align: center;
+    margin: 50px auto 0 auto;
+    width: 300px; /* ou outro valor adequado */
+    margin-top: 100px;
+}
+
 .relato-dia {
     background-color: #ede5f8;
     padding: 20px;
@@ -60,4 +67,16 @@ body {
     background-color: #5b3da2;
     width: 100%;
     border-radius: 8px 8px 0 0;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 100px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+    margin-top: 50px;
 }

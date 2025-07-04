@@ -8,10 +8,14 @@
 </head>
 <body>
     <div class="topo">
-        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        <div class="logo-nome">
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+            <p class="nome-site">Além da Sala</p>
+        </div>
         {% if not request.user.is_authenticated %}
             <a href="{% url 'login' %}">
                 <div class="perfil-icon"></div>
+                
             </a>
         {% else %}
             <div class="perfil-menu-wrapper">
@@ -62,8 +66,8 @@
       </div>
       <div class="card organize">
             <a href="{% url 'organiza' %}" style="text-decoration:none">
-                <h2>Organize seu tempo</h2>
-                <p>Não fique sobrecarregado por tarefas</p> 
+                <h2>Organize suas tarefas</h2>
+                <p>Não fique sobrecarregado, liste suas tarefas</p> 
             </a>
       
       </div>

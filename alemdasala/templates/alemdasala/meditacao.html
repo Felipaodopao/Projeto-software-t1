@@ -9,9 +9,12 @@
 <body>
     <!-- Cabeçalho padrão -->
     <header class="topo">
-        <a href="{% url 'home' %}">
-            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo Além da Sala" class="logo">
-        </a>
+        <div class="logo-nome">
+            <a href="{% url 'home' %}"> 
+                <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+            </a>
+            <p class="nome-site">Além da Sala</p>
+        </div>
         <div class="perfil-icon">
             <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
         </div>

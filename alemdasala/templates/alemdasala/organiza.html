@@ -3,23 +3,26 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8" />
-    <title>Além da Sala - Organize seu tempo</title>
+    <title>Além da Sala - Organize suas tarefas</title>
     <link rel="stylesheet" href="{% static 'alemdasala/css/organiza.css' %}">
 </head>
 <body>
   <div class="topo">
-    <a href="{% url 'home' %}"> 
-      <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
-    </a>
+    <div class="logo-nome">
+      <a href="{% url 'home' %}"> 
+        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+      </a>
+      <p class="nome-site">Além da Sala</p>
+    </div>
     <div class="perfil-icon">
         <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
     </div>
   </div>
   <div class="container">
     <div class="card">
-      <h2>Organize seu tempo</h2>
+      <h2>Organize suas tarefas</h2>
       <p class="subtitle">
-        Liste aqui os seus horários e as suas atividades diárias:
+        Liste aqui as suas atividades diárias:
       </p>
       <form method="post" style="width:100%;display:flex;gap:10px;margin-bottom:20px;">
         {% csrf_token %}

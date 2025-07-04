@@ -14,6 +14,19 @@ body {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+.logo-nome {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espaço entre o logo e o texto */
+  }
+  
+.nome-site {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: #4b2e83;
+}
 
 .logo {
     height: 50px;
