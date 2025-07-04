@@ -27,6 +27,7 @@ urlpatterns = [
     path('meditacao/relaxamento/', views.med_relaxamento, name='med_relaxamento'),
     path('meditacao/gratidao/', views.med_gratidao, name='med_gratidao'),
     path('meditacao/estresse/', views.med_estresse, name='med_estresse'),
+    path('logout/', views.logout_view, name='logout'),
 ]
 
 

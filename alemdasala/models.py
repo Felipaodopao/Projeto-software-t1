@@ -28,3 +28,19 @@ class Humor(models.Model):
 
     def __str__(self):
         return f'{self.usuario.username} - {self.data} - Humor: {self.nivel}'
+    
+class Consulta(models.Model):
+    TIPO_CHOICES = [
+        ('psicologo', 'Psicólogo'),
+        ('psicopedagogo', 'Psicopedagogo'),
+    ]
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    data = models.DateField()
+    tipo = models.CharField(max_length=20, choices=TIPO_CHOICES)
+    observacao = models.TextField(blank=True)
+
+    class Meta:
+        ordering = ['data']
+
+    def __str__(self):
+        return f"{self.get_tipo_display()} em {self.data} ({self.usuario.username})"

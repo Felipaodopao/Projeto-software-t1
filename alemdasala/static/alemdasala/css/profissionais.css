@@ -101,3 +101,19 @@ a {
     text-align: center;
     display: block;
 }
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main h1 {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 2.3rem;
+    color: #4b2e83;
+    font-weight: bold;
+    letter-spacing: 1px;
+}

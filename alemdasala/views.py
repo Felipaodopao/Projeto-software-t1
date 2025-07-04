@@ -10,7 +10,7 @@ from alemdasala.models import Humor
 from datetime import date, timedelta
 from babel.dates import format_date
 import locale
-from .models import Tarefa
+from .models import Tarefa, Consulta
 
 def index(request):
     context = {
@@ -19,18 +19,20 @@ def index(request):
     return render(request, "alemdasala/home.html", context)
 
 def login_view(request):
+    storage = messages.get_messages(request)
+    list(storage)  # Consome todas as mensagens pendentes
+
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('home')  # Redireciona para a home
+            return redirect('home')
         else:
             messages.error(request, "Usuário ou senha inválidos.")
     return render(request, "alemdasala/login.html")
 
-# @login_required(login_url='login')
 
 def home(request):
     return render(request, 'alemdasala/home.html')
@@ -187,4 +189,54 @@ def organize_tempo(request):
             Tarefa.objects.filter(id=tarefa_id, usuario=request.user).delete()
 
     tarefas = Tarefa.objects.filter(usuario=request.user).order_by('data')
-    return render(request, "alemdasala/organiza.html", {"tarefas": tarefas})
+    consultas = Consulta.objects.filter(usuario=request.user)
+    return render(request, "alemdasala/organiza.html", {"tarefas": tarefas, "consultas": consultas})
+
+@login_required(login_url='/register')
+def psicologo(request):
+    if request.method == "POST":
+        if "delete_consulta" in request.POST:
+            consulta_id = request.POST.get("delete_consulta")
+            Consulta.objects.filter(id=consulta_id, usuario=request.user, tipo="psicologo").delete()
+        else:
+            data = request.POST.get("date")
+            observacao = request.POST.get("observacao", "")
+            if data:
+                Consulta.objects.create(
+                    usuario=request.user,
+                    data=data,
+                    tipo="psicologo",
+                    observacao=observacao
+                )
+                # Criação da tarefa, se necessário
+    consultas = Consulta.objects.filter(usuario=request.user, tipo="psicologo")
+    return render(request, 'alemdasala/psicologo.html', {"consultas": consultas})
+
+@login_required(login_url='/register')
+def psicopedagogo(request):
+    if request.method == "POST":
+        if "delete_consulta" in request.POST:
+            consulta_id = request.POST.get("delete_consulta")
+            Consulta.objects.filter(id=consulta_id, usuario=request.user, tipo="psicopedagogo").delete()
+        else:
+            data = request.POST.get("date")
+            observacao = request.POST.get("observacao", "")
+            if data:
+                Consulta.objects.create(
+                    usuario=request.user,
+                    data=data,
+                    tipo="psicopedagogo",
+                    observacao=observacao
+                )
+                Tarefa.objects.create(
+                    usuario=request.user,
+                    descricao="Consulta com Psicopedagogo",
+                    data=data
+                )
+    consultas = Consulta.objects.filter(usuario=request.user, tipo="psicopedagogo")
+    return render(request, 'alemdasala/psicopedagogo.html', {"consultas": consultas})
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+        return redirect('login')

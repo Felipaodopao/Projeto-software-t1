@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="{% static 'alemdasala/css/humor.css' %}">
 </head>
 <body>
+    <header class="topo">
+        <a href="{% url 'home' %}">
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo Além da Sala" class="logo">
+        </a>
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+        </div>
+    </header>
+
     <div class="container">
         <h1>Como você está se sentindo hoje?</h1>
         <form method="POST">
@@ -26,7 +35,6 @@
             <textarea id="descricao" name="descricao" rows="4" placeholder="Escreva algo se quiser..."></textarea>
 
             <button type="submit">Registrar humor</button>
-            <a href="{% url 'logsentimento' %}" class="btn-clique">Voltar</a>
         </form>
     </div>
 </body>
