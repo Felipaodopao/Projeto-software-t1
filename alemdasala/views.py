@@ -228,15 +228,16 @@ def psicopedagogo(request):
                     tipo="psicopedagogo",
                     observacao=observacao
                 )
-                Tarefa.objects.create(
+                '''Tarefa.objects.create(
                     usuario=request.user,
                     descricao="Consulta com Psicopedagogo",
                     data=data
-                )
+                )'''
     consultas = Consulta.objects.filter(usuario=request.user, tipo="psicopedagogo")
     return render(request, 'alemdasala/psicopedagogo.html', {"consultas": consultas})
 
 def logout_view(request):
     if request.method == "POST":
         logout(request)
+        list(messages.get_messages(request))
         return redirect('login')
