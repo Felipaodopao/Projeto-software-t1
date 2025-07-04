@@ -14,24 +14,24 @@
     </header>
     
     <div class="login-container">
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-    <form method="POST">
-        {% csrf_token %}
-        <label for="email">Nome de usuário</label>
-        <input type="text" id="email" name="username" placeholder="Digite seu nome de usuário">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form method="POST">
+            {% csrf_token %}
+            <label for="email">Nome de usuário</label>
+            <input type="text" id="email" name="username" placeholder="Digite seu nome de usuário">
 
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="password" placeholder="Senha">
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="password" placeholder="Senha">
 
-        <button type="submit">Sign In</button>
-        <a href="{% url 'register' %}">Ainda não tem conta?</a>
-    </form>
-</div>
+            <button type="submit">Sign In</button>
+            <a href="{% url 'register' %}">Ainda não tem conta?</a>
+        </form>
+    </div>
 </body>
 </html>

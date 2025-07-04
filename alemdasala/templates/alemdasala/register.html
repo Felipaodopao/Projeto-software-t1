@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="{% static 'alemdasala/css/style.css' %}">
 </head>
 <body>
-    <div class="header">
-        <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
-    </div>
+    <header class="topo">
+        <a href="#"> 
+            <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+        </a>
+    </header>
     <div class="register-container">
         <form method="POST">
             {% csrf_token %}
