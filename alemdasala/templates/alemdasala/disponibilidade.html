@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Disponibilidades</title>
+    <link rel="stylesheet" href="{% static 'alemdasala/css/disponibilidade.css' %}">
+</head>
+<body>
+    <header class="topo">
+        <div class="logo-nome">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+            </a>
+            <p class="nome-site">Além da Sala</p>
+        </div>
+        <div class="perfil-icon">
+            <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
+        </div>
+    </header>
+    <main>
+        <h2>Cadastre seus horários disponíveis</h2>
+        <div class="container">
+            <form method="post" class="calendar">
+                {% csrf_token %}
+                <label for="data">Data</label>
+                <input type="date" id="data" name="data" required>
+                <label for="hora">Hora</label>
+                <input type="time" id="hora" name="hora" required>
+                <button type="submit">Adicionar Disponibilidade</button>
+            </form>
+            <div class="psychologist-card" style="margin-top:40px;">
+                <h3>Seus horários cadastrados</h3>
+            <ul>
+            {% for h in horarios_render %}
+                <li>
+                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                        {{ h.data|date:"d/m/Y" }} - {{ h.hora|time:"H:i" }}
+                        {% if h.disponivel %}
+                            <span style="color:green;">(Disponível)</span>
+                        {% else %}
+                            <span style="color:#a10000;">
+                                (Ocupado por {{ h.ocupado_por|default:"alguém" }})
+                            </span>
+                        {% endif %}
+                    </div>
+
+                    {% if h.disponivel %}
+                        <form method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" name="remover_horario" value="{{ h.id }}" class="btn-desmarcar">
+                                Remover
+                            </button>
+                        </form>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <li>Nenhum horário cadastrado.</li>
+            {% endfor %}
+            </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

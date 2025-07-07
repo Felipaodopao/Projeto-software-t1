@@ -24,6 +24,13 @@
             <label for="password">Senha</label>
             <input type="password" id="password" name="password" required>
 
+            <label for="tipo">Tipo de conta</label>
+            <select id="tipo" name="tipo" required>
+                <option value="usuario">Aluno</option>
+                <option value="psicologo">Psicólogo</option>
+                <option value="psicopedagogo">Psicopedagogo</option>
+            </select>
+
             <button type="submit">Cadastrar</button>
         </form>
         <a href="{% url 'login' %}">Já tem conta? Entrar</a>
