@@ -46,6 +46,12 @@ h2 {
     color: #48316b;
     margin-bottom: 100px;
 }
+#breathText {
+  font-size: 32px;
+  color: #4b3b75;
+  margin-top: 20px;
+  font-weight: bold;
+}
 
 .circle {
     margin: 0 auto 30px;

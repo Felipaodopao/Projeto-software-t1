@@ -25,24 +25,58 @@
         <div class="controls">
             <button id="pauseBtn">⏵ Pausar</button>
         </div>
+      <p id="breathText">Inspire: 1</p>
     </main>
 
-    <script>
-        const circle = document.getElementById("breathingCircle");
-        const btn = document.getElementById("pauseBtn");
+   <script>
+    const circle = document.getElementById("breathingCircle");
+    const btn = document.getElementById("pauseBtn");
+    const breathText = document.getElementById("breathText");
 
-        let paused = false;
+    let paused = false;
 
-        btn.addEventListener("click", () => {
-            paused = !paused;
-            if (paused) {
-                circle.style.animationPlayState = 'paused';
-                btn.innerText = "▶ Retomar";
-            } else {
-                circle.style.animationPlayState = 'running';
-                btn.innerText = "⏸ Pausar";
+    let breathPhase = 0;
+    let count = 1;
+    let interval;
+
+    function startBreathCycle() {
+        interval = setInterval(() => {
+            if (!paused) {
+                // Fases:
+                // 0 a 3s: Inspire (contando 1, 2, 3)
+                // 4s a 8s: Segure
+                // 8s a 12s: Expire
+
+                const currentTime = (Date.now() % 12000) / 1000;
+
+                if (currentTime < 4) {
+                    // Inspirando - conte 1,2,3
+                    count = Math.floor(currentTime) + 1;
+                    breathText.innerText = `Inspire: ${count}`;
+                } else if (currentTime < 8) {
+                    breathText.innerText = "Segure...";
+                } else {
+                    breathText.innerText = "Expire...";
+                }
             }
-        });
-    </script>
+        }, 300); // atualização frequente
+    }
+
+    btn.addEventListener("click", () => {
+        if (!paused) {
+            paused = true;
+            circle.style.animationPlayState = 'paused';
+            btn.innerText = "▶ Retomar";
+            breathText.innerText = "";
+        } else {
+            // Retomar animação e texto
+            paused = false;
+            circle.style.animationPlayState = 'running';
+            btn.innerText = "⏸ Pausar";
+        }
+    });
+
+    startBreathCycle();
+</script>
 </body>
 </html>
