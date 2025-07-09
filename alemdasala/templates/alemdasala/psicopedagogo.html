@@ -3,55 +3,63 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marcar horário com Psicopedagogo</title>
+    <title>Agendar Consulta com Psicopedagogo</title>
     <link rel="stylesheet" href="{% static 'alemdasala/css/psicologo.css' %}" />
 </head>
 <body>
     <header class="topo">
         <div class="logo-nome">
-            <a href="{% url 'home' %}"> 
-              <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
+            <a href="{% url 'home' %}">
+                <img src="{% static 'alemdasala/css/logo.png' %}" alt="Logo" class="logo">
             </a>
             <p class="nome-site">Além da Sala</p>
-          </div>
+        </div>
         <div class="perfil-icon">
             <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
         </div>
     </header>
 
     <main>
-        <h2>Marcar horário com um Psicopedagogo</h2>
+        <h2>Marcar horário com Psicopedagogo</h2>
+
         <div class="container">
-            <form method="post">
-                {% csrf_token %}
-                <div class="calendar">
-                    <label for="date">Escolha uma data</label>
-                    <input type="date" id="date" name="date" required />
-                </div>
-                <div class="more-info">
-                    <h3>Quer contar um pouco mais?</h3>
-                    <input type="text" name="observacao" placeholder="Digite aqui..." />
-                </div>
-                <button type="submit">Agendar Consulta</button>
-            </form>
-        </div>
-        <div class="consultas-agendadas">
-            <h3>Consultas agendadas</h3>
-            <ul>
-                {% for consulta in consultas %}
-                    <li>
-                        {{ consulta.data|date:"d/m/Y" }} - {{ consulta.observacao }}
-                        <form method="post" style="display:inline;">
-                            {% csrf_token %}
-                            <input type="hidden" name="delete_consulta" value="{{ consulta.id }}">
-                            <button type="submit" class="btn-desmarcar">Desmarcar</button>
-                        </form>
-                    </li>
-                {% empty %}
-                    <li>Nenhuma consulta agendada.</li>
-                {% endfor %}
-            </ul>
+            <!-- Coluna da esquerda - Agendamento -->
+            <div class="calendar">
+                <form method="post" action="{% url 'agendar_psicopedagogo' %}">
+                    {% csrf_token %}
+                    <label for="horario_id">Escolha um horário disponível:</label>
+                    <select name="horario_id" id="horario_id" required>
+                        <option value="">Selecione...</option>
+                        {% for h in horarios %}
+                            <option value="{{ h.id }}">
+                                {{ h.profissional.username }} – {{ h.data|date:"d/m/Y" }} {{ h.hora|time:"H:i" }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit">Agendar Consulta</button>
+                </form>
+            </div>
+
+            <!-- Coluna da direita - Consultas Agendadas -->
+            <div class="consultas-agendadas">
+                <h3>Consultas agendadas</h3>
+                <ul>
+                    {% for consulta in consultas %}
+                        <li>
+                            {{ consulta.data|date:"d/m/Y" }} às {{ consulta.hora|time:"H:i" }} – {{ consulta.observacao }}
+                            <form method="post" action="{% url 'agendar_psicopedagogo' %}" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="delete_consulta" value="{{ consulta.id }}">
+                                <button type="submit" class="btn-desmarcar" onclick="return confirm('Deseja realmente desmarcar?')">
+                                    Desmarcar
+                                </button>
+                            </form>
+                        </li>
+                    {% empty %}
+                        <li>Nenhuma consulta agendada.</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
     </main>
 </body>

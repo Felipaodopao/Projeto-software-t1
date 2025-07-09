@@ -1,0 +1,188 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+}
+
+body {
+    background-color: #f7f7fb;
+    color: #2d1b4f;
+}
+
+header {
+    background-color: #d7c8ec;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.logo-nome {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    height: 50px;
+}
+
+.nome-site {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: #4b2e83;
+}
+
+.perfil-icon img {
+    width: 55px;
+    height: 55px;
+}
+
+main {
+    padding: 30px;
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 700px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* Formulário de disponibilidade */
+.calendar {
+    background-color: #e9d8fd;
+    padding: 24px 32px;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.calendar label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.calendar input[type="date"],
+.calendar input[type="time"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #f4f4f5;
+    margin-bottom: 12px;
+}
+
+button[type="submit"] {
+    padding: 12px 28px;
+    background: #d7c8ec;
+    color: #4b2e83;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.08rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(75, 46, 131, 0.07);
+    margin-top: 18px;
+    letter-spacing: 0.5px;
+}
+
+button[type="submit"]:hover,
+button[type="submit"]:focus {
+    background: #bba3e3;
+    color: #2d1a4d;
+    box-shadow: 0 4px 16px rgba(75, 46, 131, 0.12);
+    outline: none;
+}
+
+/* Lista de horários */
+.psychologist-card {
+    background-color: #fff8dc;
+    padding: 24px 32px;
+    border-radius: 15px;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(75, 46, 131, 0.06);
+    text-align: left;
+}
+
+.psychologist-card h3 {
+    color: #4b2e83;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.psychologist-card form {
+    display: inline-block;
+    margin-left: auto;
+}
+
+.psychologist-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.psychologist-card li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    border-bottom: 1px solid #e0d6ef;
+    padding: 12px 0;
+    font-size: 1.05rem;
+}
+
+.psychologist-card li:last-child {
+    border-bottom: none;
+}
+
+.btn-desmarcar {
+    background: #ffb3b3;
+    color: #a10000;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 16px;
+    margin-left: 16px;
+    font-size: 0.98rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-desmarcar:hover {
+    background: #ff7a7a;
+    color: #fff;
+}
+
+/* Responsivo */
+@media (max-width: 700px) {
+    .calendar, .psychologist-card {
+        padding: 16px;
+    }
+
+    .psychologist-card li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-desmarcar {
+        margin: 12px 0 0;
+    }
+}

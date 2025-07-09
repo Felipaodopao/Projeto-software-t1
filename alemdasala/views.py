@@ -6,11 +6,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from datetime import date
-from alemdasala.models import Humor
+from .models import Humor
 from datetime import date, timedelta
 from babel.dates import format_date
 import locale
 from .models import Tarefa, Consulta
+from .models import Disponibilidade, Perfil
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Disponibilidade, Consulta
 
 def index(request):
     context = {
@@ -194,50 +197,186 @@ def organize_tempo(request):
 
 @login_required(login_url='/register')
 def psicologo(request):
+    horarios = Disponibilidade.objects.filter(disponivel=True, profissional__perfil__tipo='psicologo')
     if request.method == "POST":
-        if "delete_consulta" in request.POST:
+        horario_id = request.POST.get("horario_id")
+        if horario_id:
+            horario = Disponibilidade.objects.get(id=horario_id)
+            horario.disponivel = False
+            horario.save()
+            Consulta.objects.create(
+                usuario=request.user,
+                data=horario.data,
+                hora=horario.hora,  # <-- Adicione isto
+                tipo="psicologo",
+                observacao=f"Agendado com {horario.profissional.username}"
+            )
+            return redirect('psicologo')
+        elif "delete_consulta" in request.POST:
             consulta_id = request.POST.get("delete_consulta")
-            Consulta.objects.filter(id=consulta_id, usuario=request.user, tipo="psicologo").delete()
-        else:
-            data = request.POST.get("date")
-            observacao = request.POST.get("observacao", "")
-            if data:
-                Consulta.objects.create(
-                    usuario=request.user,
-                    data=data,
-                    tipo="psicologo",
-                    observacao=observacao
-                )
-                # Criação da tarefa, se necessário
+            consulta = Consulta.objects.filter(id=consulta_id, usuario=request.user, tipo="psicologo").first()
+            if consulta:
+                # Extrai o username do campo observacao
+                if consulta.observacao and "Agendado com " in consulta.observacao:
+                    username = consulta.observacao.replace("Agendado com ", "").strip()
+                else:
+                    username = None
+                disponibilidade = Disponibilidade.objects.filter(
+                    profissional__perfil__tipo='psicologo',
+                    profissional__username=username,
+                    data=consulta.data
+                ).first()
+                if disponibilidade:
+                    disponibilidade.disponivel = True
+                    disponibilidade.save()
+                consulta.delete()
     consultas = Consulta.objects.filter(usuario=request.user, tipo="psicologo")
-    return render(request, 'alemdasala/psicologo.html', {"consultas": consultas})
+    return render(request, 'alemdasala/psicologo.html', {"consultas": consultas, "horarios": horarios})
 
 @login_required(login_url='/register')
 def psicopedagogo(request):
+    horarios = Disponibilidade.objects.filter(disponivel=True, profissional__perfil__tipo='psicopedagogo')
     if request.method == "POST":
-        if "delete_consulta" in request.POST:
+        horario_id = request.POST.get("horario_id")
+        if horario_id:
+            horario = Disponibilidade.objects.get(id=horario_id)
+            horario.disponivel = False
+            horario.save()
+            Consulta.objects.create(
+                usuario=request.user,
+                data=horario.data,
+                hora=horario.hora,  # <-- Adicione isto
+                tipo="psicologo",
+                observacao=f"Agendado com {horario.profissional.username}"
+            )
+            return redirect('psicopedagogo')
+        elif "delete_consulta" in request.POST:
             consulta_id = request.POST.get("delete_consulta")
-            Consulta.objects.filter(id=consulta_id, usuario=request.user, tipo="psicopedagogo").delete()
-        else:
-            data = request.POST.get("date")
-            observacao = request.POST.get("observacao", "")
-            if data:
-                Consulta.objects.create(
-                    usuario=request.user,
-                    data=data,
-                    tipo="psicopedagogo",
-                    observacao=observacao
-                )
-                '''Tarefa.objects.create(
-                    usuario=request.user,
-                    descricao="Consulta com Psicopedagogo",
-                    data=data
-                )'''
+            consulta = Consulta.objects.filter(id=consulta_id, usuario=request.user, tipo="psicopedagogo").first()
+            if consulta:
+                # Extrai o username do campo observacao
+                if consulta.observacao and "Agendado com " in consulta.observacao:
+                    username = consulta.observacao.replace("Agendado com ", "").strip()
+                else:
+                    username = None
+                disponibilidade = Disponibilidade.objects.filter(
+                    profissional__perfil__tipo='psicopedagogo',
+                    profissional__username=username,
+                    data=consulta.data
+                ).first()
+                if disponibilidade:
+                    disponibilidade.disponivel = True
+                    disponibilidade.save()
+                consulta.delete()
     consultas = Consulta.objects.filter(usuario=request.user, tipo="psicopedagogo")
-    return render(request, 'alemdasala/psicopedagogo.html', {"consultas": consultas})
+    return render(request, 'alemdasala/psicopedagogo.html', {"consultas": consultas, "horarios": horarios})
 
 def logout_view(request):
     if request.method == "POST":
         logout(request)
         list(messages.get_messages(request))
         return redirect('login')
+    
+@login_required
+def agendar_consulta(request, tipo):
+    horarios = Disponibilidade.objects.filter(disponivel=True)
+
+    if request.method == 'POST':
+        if 'delete_consulta' in request.POST:
+            consulta_id = request.POST.get('delete_consulta')
+            consulta = Consulta.objects.filter(id=consulta_id, usuario=request.user).first()
+            if consulta:
+                # Liberar o horário
+                Disponibilidade.objects.filter(data=consulta.data, hora=consulta.hora, profissional__perfil__tipo=tipo).update(disponivel=True)
+                consulta.delete()
+            return redirect(request.path)
+
+        horario_id = request.POST.get('horario_id')
+        horario = Disponibilidade.objects.filter(id=horario_id, disponivel=True).first()
+        if horario:
+            horario.disponivel = False
+            horario.save()
+            Consulta.objects.create(
+                usuario=request.user,
+                data=horario.data,
+                hora=horario.hora,
+                tipo=tipo,
+                observacao=f"Agendado com {horario.profissional.username}"
+            )
+            return redirect(request.path)
+
+    consultas = Consulta.objects.filter(usuario=request.user, tipo=tipo)
+    template = 'alemdasala/psicologo.html' if tipo == 'psicologo' else 'alemdasala/psicopedagogo.html'
+
+    return render(request, template, {
+        'horarios': horarios,
+        'consultas': consultas,
+    })
+    
+
+@login_required
+def cadastrar_disponibilidade(request):
+    if not hasattr(request.user, 'perfil') or request.user.perfil.tipo == 'usuario':
+        return redirect('home')
+
+    if request.method == 'POST':
+        if 'remover_horario' in request.POST:
+            horario_id = request.POST.get('remover_horario')
+            horario = Disponibilidade.objects.filter(id=horario_id, profissional=request.user, disponivel=True).first()
+            if horario:
+                horario.delete()
+        else:
+            data = request.POST.get('data')
+            hora = request.POST.get('hora')
+            if data and hora:
+                Disponibilidade.objects.get_or_create(
+                    profissional=request.user,
+                    data=data,
+                    hora=hora,
+                    defaults={'disponivel': True}
+                )
+
+    disponibilidades = Disponibilidade.objects.filter(profissional=request.user)
+
+    # buscar apenas consultas associadas ao profissional
+    consultas = Consulta.objects.filter(
+        data__in=[d.data for d in disponibilidades],
+        tipo=request.user.perfil.tipo,
+        observacao__icontains=request.user.username
+    )
+
+    ocupacoes = {
+        f"{c.data}-{c.hora}": c.usuario.username
+        for c in consultas
+    }
+
+    horarios_render = []
+    for disp in disponibilidades:
+        chave = f"{disp.data}-{disp.hora}"
+        horarios_render.append({
+            "id": disp.id,
+            "data": disp.data,
+            "hora": disp.hora,
+            "disponivel": disp.disponivel,
+            "ocupado_por": ocupacoes.get(chave)
+        })
+
+    return render(request, 'alemdasala/disponibilidade.html', {
+        'horarios_render': horarios_render
+    })
+
+
+
+def register_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        tipo = request.POST.get('tipo', 'usuario')
+        if User.objects.filter(username=username).exists():
+            return render(request, 'alemdasala/register.html', {'error': 'Usuário já existe.'})
+        user = User.objects.create_user(username=username, email=email, password=password)
+        Perfil.objects.create(user=user, tipo=tipo)
+        login(request, user)
+        return redirect('home')
+    return render(request, 'alemdasala/register.html')

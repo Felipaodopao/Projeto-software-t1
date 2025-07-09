@@ -15,7 +15,6 @@
         {% if not request.user.is_authenticated %}
             <a href="{% url 'login' %}">
                 <div class="perfil-icon"></div>
-                
             </a>
         {% else %}
             <div class="perfil-menu-wrapper">
@@ -23,6 +22,11 @@
                     <img src="{% static 'alemdasala/css/profileIcon.png' %}" alt="Perfil">
                 </div>
                 <div class="perfil-dropdown">
+                    {% if request.user.perfil.tipo != 'usuario' %}
+                        <form method="get" action="{% url 'cadastrar_disponibilidade' %}">
+                            <button type="submit" class="logout-btn">Disponibilidade</button>
+                        </form>
+                    {% endif %}
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
                         <button type="submit" class="logout-btn">Logout</button>
